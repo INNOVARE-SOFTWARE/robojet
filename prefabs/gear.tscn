@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://312cx7sind1"]
+
+[ext_resource type="Texture2D" uid="uid://ckmur2wuawkow" path="res://assets/sprites/Suriken-0.png" id="1_iijdq"]
+[ext_resource type="Script" uid="uid://cejdmbogxf131" path="res://gear.gd" id="1_tqako"]
+[ext_resource type="Texture2D" uid="uid://dv16xmwdghaoa" path="res://assets/sprites/Suriken-1.png" id="2_tqako"]
+[ext_resource type="Texture2D" uid="uid://btxn2hepoyhme" path="res://assets/sprites/Suriken-2.png" id="3_gc2hf"]
+[ext_resource type="Texture2D" uid="uid://dlmcm1yta5yd7" path="res://assets/sprites/Suriken-3.png" id="4_ekdhr"]
+[ext_resource type="Texture2D" uid="uid://0oiebr3g0072" path="res://assets/sprites/Suriken-4.png" id="5_1jm6r"]
+[ext_resource type="Texture2D" uid="uid://j3cpfclmm0er" path="res://assets/sprites/Suriken-5.png" id="6_qk5t8"]
+[ext_resource type="Texture2D" uid="uid://dapxgcao7if73" path="res://assets/sprites/Suriken-6.png" id="7_i41pf"]
+[ext_resource type="Texture2D" uid="uid://dutretytdalii" path="res://assets/sprites/Suriken-7.png" id="8_onxsf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bc38l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iijdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tqako")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gc2hf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ekdhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1jm6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qk5t8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_i41pf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_onxsf")
+}],
+"loop": true,
+"name": &"road",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay6fg"]
+size = Vector2(31, 31)
+
+[node name="Gears" type="Node2D"]
+script = ExtResource("1_tqako")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bc38l")
+animation = &"road"
+autoplay = "road"
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_ay6fg")
+
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

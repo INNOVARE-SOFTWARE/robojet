@@ -56,5 +56,6 @@ func _on_timer_timeout() -> void:
 	Global.life = Global.life - 1
 	if (Global.life == -1):
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+		Global.life = 3
 	else:
 		get_tree().reload_current_scene()
